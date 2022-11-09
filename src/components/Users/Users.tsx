@@ -3,12 +3,12 @@ import UserItem from "./UserItem";
 
 const Users = () => {
   return (
-    <div>
-      Users
+    <>
+      <h4 className='fw-bolder text-uppercase text-danger'>Users:</h4>
       <UserItem/>
       <UserItem/>
       <UserItem/>
-    </div>
+    </>
   );
 };
 
