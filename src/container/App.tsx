@@ -5,7 +5,7 @@ import Users from "../components/Users/Users";
 function App() {
   return (
     <>
-      <main className='container-fluid'>
+      <main className='container'>
         <div className='row'>
           <div className='col'>
             <UserForm/>
