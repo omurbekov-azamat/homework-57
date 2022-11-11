@@ -18,11 +18,27 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
     setUser(prev => ({...prev, [name]: value}));
   };
 
+  const changeCondition = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {checked, name} = e.target;
+    setUser(prev => ({...prev, [name]: checked}));
+  };
+
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({
-      id: Math.random().toString(),
-      ...user,
+    if (user.name !== '' && user.email !== '' && user.part !== '') {
+      onSubmit({
+        id: Math.random().toString(),
+        ...user,
+      });
+    } else {
+      alert('Fill the form please!')
+    }
+
+    setUser({
+      name: '',
+      email: '',
+      condition: false,
+      part: '',
     });
   };
 
@@ -39,23 +55,18 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="email">Email</label>
-        <input id='email' name='email' type="email"
-               className='form-control'
+        <input id='email' name='email' type="email" className='form-control'
                value={user.email}
                onChange={onUserChange}
         />
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="condition" className='me-2'>Condition</label>
-        <input id='condition' name='condition'
-               type="checkbox" onChange={onUserChange}
-        />
+        <input id='condition' name='condition' type="checkbox" onChange={changeCondition}/>
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="part" className='me-2'>Part</label>
-        <select onChange={onUserChange}
-                name="part" id="part"
-                className='form-control'>
+        <select onChange={onUserChange} name="part" id="part" className='form-control'>
           <option value='user'>user</option>
           <option value='editor'>editor</option>
           <option value='admin'>admin</option>
