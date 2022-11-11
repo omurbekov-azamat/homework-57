@@ -30,8 +30,6 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
         id: Math.random().toString(),
         ...user,
       });
-    } else {
-      alert('Fill the form please!')
     }
 
     setUser({
@@ -47,26 +45,47 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
       <h4 className='text-uppercase fw-semibold'>add new user</h4>
       <div className='form-group mt-2'>
         <label htmlFor="name">Name</label>
-        <input id='name' name='name' type="text"
-               className='form-control'
-               value={user.name}
-               onChange={onUserChange}
+        <input
+          id='name'
+          name='name'
+          type="text"
+          className='form-control'
+          value={user.name}
+          required
+          onChange={onUserChange}
         />
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="email">Email</label>
-        <input id='email' name='email' type="email" className='form-control'
-               value={user.email}
-               onChange={onUserChange}
+        <input
+          id='email'
+          name='email'
+          type="email"
+          className='form-control'
+          value={user.email}
+          required
+          onChange={onUserChange}
         />
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="condition" className='me-2'>Condition</label>
-        <input id='condition' name='condition' type="checkbox" onChange={changeCondition}/>
+        <input
+          id='condition'
+          name='condition'
+          type="checkbox"
+          onChange={changeCondition}
+        />
       </div>
       <div className='form-group mt-2'>
         <label htmlFor="part" className='me-2'>Part</label>
-        <select onChange={onUserChange} name="part" id="part" className='form-control'>
+        <select
+          onChange={onUserChange}
+          name="part" id="part"
+          className='form-control'
+          required
+          value={user.part}
+        >
+          <option disabled value=''>Select a category!</option>
           <option value='user'>user</option>
           <option value='editor'>editor</option>
           <option value='admin'>admin</option>
